@@ -35,7 +35,6 @@ func main() {
 }
 
 func parseFlags() (flags Flags) {
-
 	flag.StringVar(&flags.listen, "CFG_LISTEN", "127.0.0.1:7075", "Listen interface and port")
 	flag.BoolVar(&flags.accessLogs, "CFG_ACCESS_LOGS", false, "Enable access logs")
 	flag.Parse()
@@ -45,5 +44,4 @@ func parseFlags() (flags Flags) {
 type Flags struct {
 	listen string
 	accessLogs bool
-
 }

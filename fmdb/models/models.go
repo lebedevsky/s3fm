@@ -8,10 +8,9 @@ type Metadata struct {
 type UserSource int
 
 const (
-	UserSourceLocal = 0
-	UserSourceLDAP = 1
+	UserSourceLocal UserSource = 0
+	UserSourceLDAP UserSource = 1
 )
-
 
 
 type User struct {
@@ -19,5 +18,5 @@ type User struct {
 	Source   UserSource
 	IsAdmin  bool
 	IsActive bool
-
 }
+
