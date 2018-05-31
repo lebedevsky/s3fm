@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/larrabee/s3fm/fmdb"
+	"github.com/lebedevsky/s3fm/fmdb"
 	"github.com/jinzhu/gorm"
 	"github.com/namsral/flag"
 )

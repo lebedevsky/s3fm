@@ -1,7 +1,7 @@
 package fmdb
 
 import (
-	"github.com/larrabee/s3fm/fmdb/models"
+	"github.com/lebedevsky/s3fm/fmdb/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"fmt"
