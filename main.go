@@ -11,10 +11,11 @@ import (
 var db *gorm.DB
 
 func main() {
+	var err error
 	e := echo.New()
 	e.HideBanner = true
 	flags := parseFlags()
-	db, err := fmdb.OpenDB("test.db")
+	db, err = fmdb.OpenDB("test.db")
 	if err != nil {
 		e.Logger.Fatalf("Cannot open DB. err: %s", err)
 	}
