@@ -13,7 +13,7 @@ var db *gorm.DB
 func main() {
 	e := echo.New()
 	e.HideBanner = true
-	flag := parseFlags()
+	flags := parseFlags()
 	db, err := fmdb.OpenDB("test.db")
 	if err != nil {
 		e.Logger.Fatalf("Cannot open DB. err: %s", err)
@@ -21,7 +21,7 @@ func main() {
 
 	db.Close()
 	// Middleware
-	if flag.accessLogs {
+	if flags.accessLogs {
 		e.Use(middleware.Logger())
 	}
 	e.Use(middleware.Recover())
@@ -30,7 +30,7 @@ func main() {
 	addRoutes(e)
 
 	// Start server
-	e.Logger.Fatal(e.Start(flag.listen))
+	e.Logger.Fatal(e.Start(flags.listen))
 }
 
 func parseFlags() (flags Flags) {
