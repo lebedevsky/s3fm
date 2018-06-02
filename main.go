@@ -3,9 +3,10 @@ package main
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/lebedevsky/s3fm/fmdb"
 	"github.com/jinzhu/gorm"
 	"github.com/namsral/flag"
+	"github.com/lebedevsky/s3fm/fmdb"
+	"github.com/labstack/gommon/log"
 )
 
 var db *gorm.DB
@@ -14,13 +15,13 @@ func main() {
 	var err error
 	e := echo.New()
 	e.HideBanner = true
+	e.Logger.SetLevel(log.INFO)
 	flags := parseFlags()
-	db, err = fmdb.OpenDB("test.db")
-	if err != nil {
+
+	if db, err = fmdb.OpenDB("test.db"); err != nil {
 		e.Logger.Fatalf("Cannot open DB. err: %s", err)
 	}
 
-	db.Close()
 	// Middleware
 	if flags.accessLogs {
 		e.Use(middleware.Logger())

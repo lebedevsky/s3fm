@@ -3,7 +3,14 @@ package models
 import "github.com/jinzhu/gorm"
 
 func Update(db *gorm.DB) (error) {
-	db.AutoMigrate(&Metadata{})
-	db.AutoMigrate(&User{})
+	if err := db.AutoMigrate(&Metadata{}).Error; err != nil {
+		return err
+	}
+	if err := db.AutoMigrate(&Group{}).Error; err != nil {
+		return err
+	}
+	if err := db.AutoMigrate(&User{}).Error; err != nil {
+		return err
+	}
 	return nil
 }

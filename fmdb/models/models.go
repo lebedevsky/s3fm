@@ -1,9 +1,6 @@
 package models
 
-type Metadata struct {
-	Key string `gorm:"type:varchar(255);PRIMARY_KEY"`
-	Value string
-}
+import "github.com/jinzhu/gorm"
 
 type UserSource int
 
@@ -12,11 +9,25 @@ const (
 	UserSourceLDAP UserSource = 1
 )
 
+type Metadata struct {
+	Key string `gorm:"type:varchar(255);primary_key"`
+	Value string
+}
 
 type User struct {
-	Username string `gorm:"type:varchar(255);PRIMARY_KEY"`
-	Source   UserSource
-	IsAdmin  bool
-	IsActive bool
+	Login        string `gorm:"type:varchar(255);primary_key"`
+	Source       UserSource
+	IsActive     bool
+	PasswordHash string
+	Salt         string
+	Groups       []Group `gorm:"many2many:user_groups;"`
 }
+
+type Group struct {
+	gorm.Model
+	Name    string `gorm:"type:varchar(255);UNIQUE_INDEX"`
+	Source  UserSource
+	IsAdmin bool
+}
+
 
